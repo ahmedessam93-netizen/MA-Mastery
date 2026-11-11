@@ -1,5 +1,5 @@
 /* Offline support. The page is fetched fresh when online; everything else is served from the cache. */
-var V = "ma-mastery-880e22b9d4";
+var V = "ma-mastery-95ec2c8bf7";
 var CORE = ["./", "app.bin", "icons/icon-180.png", "icons/icon-192.png", "icons/icon-512.png", "icons/icon-maskable.png", "img/car.jpg", "img/clinic.jpg", "img/night.jpg", "img/office.jpg", "manifest.webmanifest"];
 self.addEventListener("install", function(e){ e.waitUntil(caches.open(V).then(function(c){ return c.addAll(CORE); }).then(function(){ return self.skipWaiting(); })); });
 self.addEventListener("activate", function(e){ e.waitUntil(caches.keys().then(function(ks){ return Promise.all(ks.filter(function(k){ return k !== V; }).map(function(k){ return caches.delete(k); })); }).then(function(){ return self.clients.claim(); })); });
